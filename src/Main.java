@@ -3,23 +3,26 @@ import model.Conta;
 import model.TipoConta;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 
 public class Main {
     public static void main(String[] args){
-        Cliente cliente = criarCliente();
+        Conta conta = new Conta(TipoConta.CONTA_CORRENTE, 123456L, 1234);
+        conta.deposita(BigDecimal.valueOf(8));
+        conta.deposita(BigDecimal.valueOf(10));
+        conta.saque(BigDecimal.valueOf(7));
 
-        System.out.println(cliente.nome);
-//        BigDecimal saldoAtual = cliente.conta.deposita(BigDecimal.valueOf(10));
-//
-//        System.out.println("O saldo do cliente "+ cliente.nome +" é de " + saldoAtual);
-    }
+        Conta contaPoupanca = new Conta(TipoConta.CONTA_POUPANCA, 12654l, 1023);
+        conta.transferencia(BigDecimal.valueOf(5), contaPoupanca);
+        System.out.println("O saldo da minha conta poupança é: " + contaPoupanca.getSaldo());
 
-    public static Cliente criarCliente(){
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente("Will");
+        cliente.setCpf(12345678911L);
+        cliente.setConta(conta);
 
-       return cliente;
+        System.out.println("O cliente " + cliente.getNome()+ " tem o cpf: " +
+                cliente.getCpf() + " e a conta: " + cliente.getConta().getNumeroConta() +
+                " com saldo: " + cliente.getConta().getSaldo());
     }
 
 }
