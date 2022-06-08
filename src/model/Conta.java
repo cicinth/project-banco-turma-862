@@ -3,37 +3,50 @@ package model;
 import java.math.BigDecimal;
 
 public class Conta {
-    private Enum<TipoConta> tipoConta;
-    private Long numeroConta;
-    private Integer agencia;
-    private BigDecimal saldo;
+    protected Long numeroConta;
+    protected Integer agencia;
+    protected BigDecimal saldo;
 
     public Conta(Enum<TipoConta> tipoConta, Long numeroConta, Integer agencia) {
-        this.tipoConta = tipoConta;
         this.numeroConta = numeroConta;
         this.agencia = agencia;
         this.saldo = BigDecimal.ZERO;
     }
 
-    public Enum<TipoConta> getTipoConta() {
-        return this.tipoConta;
+    public Conta(Long numeroConta, Integer agencia) {
+        this.numeroConta = numeroConta;
+        this.agencia = agencia;
+        this.saldo = BigDecimal.ZERO;
     }
+
 
     public Long getNumeroConta() {
         return this.numeroConta;
+    }
+
+    public void setNumeroConta(Long numeroConta) {
+        this.numeroConta = numeroConta;
     }
 
     public Integer getAgencia() {
         return this.agencia;
     }
 
+    public void setAgencia(Integer agencia){
+        this.agencia = agencia;
+    }
+
     public BigDecimal getSaldo() {
         return this.saldo;
     }
 
+    public void setSaldo(BigDecimal saldo){
+        this.saldo = saldo;
+
+    }
+
     public BigDecimal deposita(BigDecimal valor) {
-        BigDecimal novoValor = valor.multiply(BigDecimal.valueOf(1.10));
-        this.saldo = this.saldo.add(novoValor);
+        this.saldo = this.saldo.add(valor);
         return this.saldo;
     }
 
