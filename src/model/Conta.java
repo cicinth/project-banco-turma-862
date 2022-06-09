@@ -3,11 +3,14 @@ package model;
 import java.math.BigDecimal;
 
 public class Conta {
+    protected Enum<TipoConta> tipoConta;
     protected Long numeroConta;
     protected Integer agencia;
     protected BigDecimal saldo;
 
+    public Conta(){}
     public Conta(Enum<TipoConta> tipoConta, Long numeroConta, Integer agencia) {
+        this.tipoConta = tipoConta;
         this.numeroConta = numeroConta;
         this.agencia = agencia;
         this.saldo = BigDecimal.ZERO;

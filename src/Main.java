@@ -1,6 +1,7 @@
 import model.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args){
@@ -20,6 +21,15 @@ public class Main {
         System.out.println("O saldo da minha conta poupança é: " + contaPoupanca.getSaldo());
         contaPoupanca.renderJuros(1.1);
         System.out.println("O saldo da minha conta poupança é: " + contaPoupanca.getSaldo());
+
+        Cliente cliente = new Cliente("joao", 563436L, LocalDate.of(1997, 06, 03), 54353L);
+        cliente.setConta(contaPoupanca);
+        cliente.setConta(conta);
+
+        System.out.println(cliente.getConta().get(0).getNumeroConta());
+        System.out.println(cliente.getConta().get(1).getNumeroConta());
+
+       cliente.getContaCorrente().getLimiteCredito();
 
     }
 }
